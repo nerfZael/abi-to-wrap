@@ -1,0 +1,25 @@
+import {
+  Ethereum_Query,
+  {{#function}}
+  {{#view}}
+  Input_{{name}}{{^_last_}},{{/_last_}}
+  {{/view}}
+  {{/function}}
+} from "./w3";
+import { BigInt } from '@web3api/wasm-as'
+
+{{#function}}
+{{#nonpayable}}
+export function {{name}}(input: Input_{{name}}): {{#outputs}}{{type}}{{/outputs}} {
+  return Ethereum_Mutation.callContractMethod({
+    connection: input.connection,
+    address: input.address,
+    method: "function {{name}}({{#inputs}}{{type}} {{name}}{{^_last_}}, {{/_last_}}{{/inputs}}) public returns ({{#outputs}}{{type}}{{/outputs}})",
+    args: [{{#inputs}}{{inputToString}}{{^_last_}}, {{/_last_}}{{/inputs}}]
+  })
+}
+{{^_last_}}
+
+{{/_last_}}
+{{/nonpayable}}
+{{/function}}

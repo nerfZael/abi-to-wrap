@@ -1,0 +1,16 @@
+#import { Connection } into Ethereum from "w3://ens/ethereum.web3api.eth"
+
+type Query {
+{{#function}}
+{{#nonpayable}}
+  {{name}}(
+    connection: Ethereum_Connection!{{#inputs.length}},{{/inputs.length}}
+    {{#inputs}}
+    {{name}}: {{schemaType}}!{{^_last_}},{{/_last_}}
+    {{/inputs}}
+  ): {{#outputs}}{{schemaType}}{{/outputs}}!{{^_last_}}
+{{/_last_}}
+
+{{/nonpayable}}
+{{/function}}
+}

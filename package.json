@@ -1,0 +1,27 @@
+{
+  "name": "wrapper-abi-gen",
+  "version": "0.1.0",
+  "main": "bin/main.js",
+  "types": "bin/main.d.ts",
+  "author": "nerfZael",
+  "license": "MIT",
+  "private": false,
+  "files": [
+    "/bin"
+  ],
+  "scripts": {
+    "build": "tsc --project tsconfig.build.json",
+    "dev": "ts-node src/main.ts",
+    "start": "node bin/main.js"
+  },
+  "dependencies": {
+    "commander": "^8.2.0",
+    "mustache": "^4.2.0",
+    "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/mustache": "^4.1.2",
+    "@types/node": "^16.11.11",
+    "ts-node": "^10.3.0"
+  }
+}
