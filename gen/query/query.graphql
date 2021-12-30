@@ -1,0 +1,36 @@
+#import { Connection } into Ethereum from "w3://ens/ethereum.web3api.eth"
+
+type Query {
+  name(
+    connection: Ethereum_Connection!,
+    address: String!
+  ): String!
+
+  totalSupply(
+    connection: Ethereum_Connection!,
+    address: String!
+  ): BigInt!
+
+  decimals(
+    connection: Ethereum_Connection!,
+    address: String!
+  ): UInt8!
+
+  balanceOf(
+    connection: Ethereum_Connection!,
+    address: String!,
+    _owner: String!
+  ): BigInt!
+
+  symbol(
+    connection: Ethereum_Connection!,
+    address: String!
+  ): String!
+
+  allowance(
+    connection: Ethereum_Connection!,
+    address: String!,
+    _owner: String!,
+    _spender: String!
+  ): BigInt!
+}
