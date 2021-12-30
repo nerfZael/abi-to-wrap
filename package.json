@@ -9,6 +9,22 @@
   "files": [
     "/bin"
   ],
+  "bin": {
+    "abi-to-wrap": "./bin/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nerfZael/abi-to-wrap.git"
+  },
+  "keywords": [
+    "polywrap",
+    "ethereum",
+    "abi",
+    "wrap",
+    "wrapper",
+    "polywrapper",
+    "codegen"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "dev": "ts-node src/main.ts",
