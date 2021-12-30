@@ -4,7 +4,8 @@ type Mutation {
 {{#function}}
   {{#nonpayable}}
   {{name}}(
-    connection: Ethereum_Connection!{{#inputs.length}},{{/inputs.length}}
+    connection: Ethereum_Connection!,
+    address: String!{{#inputs.length}},{{/inputs.length}}
     {{#inputs}}
     {{name}}: {{schemaType}}!{{^_last_}},{{/_last_}}
     {{/inputs}}
@@ -12,5 +13,16 @@ type Mutation {
 {{/_last_}}
 
   {{/nonpayable}}
+  {{#payable}}
+  {{name}}(
+    connection: Ethereum_Connection!,
+    address: String!{{#inputs.length}},{{/inputs.length}}
+    {{#inputs}}
+    {{name}}: {{schemaType}}!{{^_last_}},{{/_last_}}
+    {{/inputs}}
+  ): Ethereum_TxResponse!{{^_last_}}
+  {{/_last_}}
+
+  {{/payable}}
 {{/function}}
 }

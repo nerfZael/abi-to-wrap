@@ -30,18 +30,38 @@ export const mappers = {
   },
   schemaType: {
     to: {
+      assemblyScriptType: (type: string): string => {
+        const typeMap = <Record<string, string>>{
+          "Int8": `i8`,
+          "Int16": `i16`,
+          "Int32": `i32`,
+          "Boolean": `bool`,
+          "Bytes": `Bytes`,
+          "String": `string`,
+          "UInt8": `u8`,
+          "UInt16": `u16`,
+          "UInt32": `u32`,
+          "BigInt": `BigInt`,
+        };
+      
+        if(!typeMap[type]) {
+          return "Undefined"
+        }
+      
+        return typeMap[type];
+      },
       fromStringVar: (type: string, varName: string) => {
         const typeMap = <Record<string, string>>{
           "Int8": `parseInt(${varName}) as i8`,
           "Int16": `parseInt(${varName}) as i16`,
           "Int32": `parseInt(${varName}) as i32`,
-          "Boolean": "",
-          "Bytes": "",
+          "Boolean": "Undefined",
+          "Bytes": "Undefined",
           "String": `${varName}`,
           "UInt8": `parseInt(${varName}) as u8`,
           "UInt16": `parseInt(${varName}) as u16`,
           "UInt32": `parseInt(${varName}) as u32`,
-          "BigInt": `BigInt.from(${varName})`,
+          "BigInt": `BigInt.fromString(${varName})`,
         };
       
         if(!typeMap[type]) {

@@ -11,11 +11,13 @@ export const transformAbi = (abi: any) => {
         input.schemaType = mappers.solidityType.to.schemaType(input.type);
         input.stringParseSchemaType = mappers.schemaType.to.fromStringVar(input.schemaType, "result");
         input.inputToString = mappers.schemaType.to.fromVar(input.schemaType, input.name, "input");
+        input.assemblyScriptType = mappers.schemaType.to.assemblyScriptType(input.schemaType);
       });
 
       x["outputs"].forEach((input: any) => {
         input.schemaType = mappers.solidityType.to.schemaType(input.type);
         input.stringParseSchemaType = mappers.schemaType.to.fromStringVar(input.schemaType, "result");
+        input.assemblyScriptType = mappers.schemaType.to.assemblyScriptType(input.schemaType);
       });
     });
   }

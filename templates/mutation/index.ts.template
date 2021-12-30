@@ -1,25 +1,42 @@
 import {
-  Ethereum_Query,
+  Ethereum_TxResponse,
+  Ethereum_Mutation,
   {{#function}}
-  {{#view}}
+  {{#nonpayable}}
   Input_{{name}}{{^_last_}},{{/_last_}}
-  {{/view}}
+  {{/nonpayable}}
+  {{#payable}}
+  Input_{{name}}{{^_last_}},{{/_last_}}
+  {{/payable}}
   {{/function}}
 } from "./w3";
-import { BigInt } from '@web3api/wasm-as'
+import { BigInt } from '@web3api/wasm-as';
 
 {{#function}}
 {{#nonpayable}}
-export function {{name}}(input: Input_{{name}}): {{#outputs}}{{type}}{{/outputs}} {
+export function {{name}}(input: Input_{{name}}): Ethereum_TxResponse {
   return Ethereum_Mutation.callContractMethod({
     connection: input.connection,
     address: input.address,
     method: "function {{name}}({{#inputs}}{{type}} {{name}}{{^_last_}}, {{/_last_}}{{/inputs}}) public returns ({{#outputs}}{{type}}{{/outputs}})",
     args: [{{#inputs}}{{inputToString}}{{^_last_}}, {{/_last_}}{{/inputs}}]
-  })
+  });
 }
 {{^_last_}}
 
 {{/_last_}}
 {{/nonpayable}}
+{{#payable}}
+export function {{name}}(input: Input_{{name}}): Ethereum_TxResponse {
+  return Ethereum_Mutation.callContractMethod({
+    connection: input.connection,
+    address: input.address,
+    method: "function {{name}}({{#inputs}}{{type}} {{name}}{{^_last_}}, {{/_last_}}{{/inputs}}) public returns ({{#outputs}}{{type}}{{/outputs}})",
+    args: [{{#inputs}}{{inputToString}}{{^_last_}}, {{/_last_}}{{/inputs}}]
+  });
+}
+{{^_last_}}
+
+{{/_last_}}
+{{/payable}}
 {{/function}}

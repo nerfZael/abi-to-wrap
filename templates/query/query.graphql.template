@@ -2,15 +2,16 @@
 
 type Query {
 {{#function}}
-{{#nonpayable}}
+{{#view}}
   {{name}}(
-    connection: Ethereum_Connection!{{#inputs.length}},{{/inputs.length}}
+    connection: Ethereum_Connection!,
+    address: String!{{#inputs.length}},{{/inputs.length}}
     {{#inputs}}
     {{name}}: {{schemaType}}!{{^_last_}},{{/_last_}}
     {{/inputs}}
   ): {{#outputs}}{{schemaType}}{{/outputs}}!{{^_last_}}
 {{/_last_}}
 
-{{/nonpayable}}
+{{/view}}
 {{/function}}
 }
