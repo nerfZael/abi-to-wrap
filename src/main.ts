@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { addFirstLast } from "./addFirstLast";
 import { generateCode } from "./generateCode";
 import { loadAbi } from "./loadAbi";
