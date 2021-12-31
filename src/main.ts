@@ -7,7 +7,7 @@ import { program } from "commander";
 import fs from "fs";
 import path from "path";
 
-const templatesPath = path.resolve("./templates");
+const templatesPath = path.resolve(__dirname, "templates");
 
 const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
   const files = fs.readdirSync(dirPath)
