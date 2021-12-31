@@ -1,6 +1,6 @@
 {
   "name": "abi-to-wrap",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "bin/main.js",
   "types": "bin/main.d.ts",
   "author": "nerfZael",
