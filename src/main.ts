@@ -27,6 +27,7 @@ const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
 (async () => {
   program
     .command("gen")
+    .description("Generate wrapper code from ABI")
     .requiredOption("-a, --abi <number>", "Abi file path")
     .requiredOption("-o, --output <number>", "Output directory path")
     .action(async (options) => {
