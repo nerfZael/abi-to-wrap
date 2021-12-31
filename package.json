@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": false,
   "files": [
-    "/bin"
+    "/bin",
+    "/src/templates"
   ],
   "bin": {
     "abi-to-wrap": "./bin/main.js"
@@ -28,7 +29,8 @@
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "dev": "ts-node src/main.ts",
-    "start": "node bin/main.js"
+    "start": "node bin/main.js",
+    "postbuild": "cp -r ./src/templates ./bin/templates"
   },
   "dependencies": {
     "commander": "^8.2.0",
